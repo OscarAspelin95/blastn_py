@@ -1,9 +1,9 @@
 import argparse
 from pathlib import Path
 
-from blastn import nucleotide_blast
-from schema import BlastConfig
-from utils import _ensure_dir, _ensure_file
+from .blastn import nucleotide_blast
+from .schema import BlastConfig
+from .utils import _ensure_dir, _ensure_file
 from yaspin import yaspin
 
 

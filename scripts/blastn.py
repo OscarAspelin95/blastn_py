@@ -4,10 +4,11 @@ from multiprocessing import cpu_count
 from pathlib import Path
 
 import pandas as pd
-from parser import BlastCols, BlastConfig, get_best_hits, read_blast_tsv
-from schema import BlastResult
 from sh import blastn, makeblastdb
-from utils import _ensure_dir, _ensure_file
+
+from .parser import BlastCols, BlastConfig, get_best_hits, read_blast_tsv
+from .schema import BlastResult
+from .utils import _ensure_dir, _ensure_file
 
 
 def get_blastdb(subject: Path, wd: Path) -> Path:
@@ -81,7 +82,7 @@ def nucleotide_blast(
         blast_df = read_blast_tsv(blast_tsv, cfg)
 
         # Parse and validate results
-        best_hits_df = get_best_hits(blast_df)
+        best_hits_df = get_best_hits(blast_df, margin=cfg.margin)
         blast_result = validate_results(best_hits_df, cfg)
         result_json = write_results(blast_result, outdir)
 

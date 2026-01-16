@@ -11,6 +11,11 @@ class BlastConfig(BaseModel):
         description="Min BLAST percent aligned (>0.0 and <=1.0). Default 0.90", default=0.90
     )
     word_size: int = Field(description="BLAST word size (5-31). Default 11", default=11)
+    margin: int = Field(
+        description="Margin in nucleotides for deduplicating hits by location. "
+        "Hits that overlap by <= margin nucleotides are considered separate locations. Default 0.",
+        default=0,
+    )
 
     @field_validator("frac_identity", "frac_aligned")
     @classmethod
@@ -26,6 +31,15 @@ class BlastConfig(BaseModel):
     def validate_word_size(cls, value: int) -> int:
         if value < 5 or value > 31:
             msg = f"{value} is not >=5 and <=31"
+            raise ValueError(msg)
+
+        return value
+
+    @field_validator("margin")
+    @classmethod
+    def validate_margin(cls, value: int) -> int:
+        if value < 0:
+            msg = f"{value} is not >= 0"
             raise ValueError(msg)
 
         return value

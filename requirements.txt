@@ -2,3 +2,4 @@ sh==2.2.2
 pydantic==2.12.5
 pandas==2.3.3
 yaspin==3.4.0
+pytest==9.0.2
