@@ -3,7 +3,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from .schema import BlastCols, BlastConfig
+from scripts.schema import BlastCols, BlastConfig
 
 
 def read_blast_tsv(blast_tsv: Path, cfg: BlastConfig) -> pd.DataFrame:

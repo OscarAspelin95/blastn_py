@@ -1,9 +1,13 @@
 import argparse
+import sys
 from pathlib import Path
 
-from .blastn import nucleotide_blast
-from .schema import BlastConfig
-from .utils import _ensure_dir, _ensure_file
+# Add parent directory to path so we can import scripts module
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from scripts.blastn import nucleotide_blast
+from scripts.schema import BlastConfig
+from scripts.utils import _ensure_dir, _ensure_file
 from yaspin import yaspin
 
 

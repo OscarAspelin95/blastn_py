@@ -6,9 +6,9 @@ from pathlib import Path
 import pandas as pd
 from sh import blastn, makeblastdb
 
-from .parser import BlastCols, BlastConfig, get_best_hits, read_blast_tsv
-from .schema import BlastResult
-from .utils import _ensure_dir, _ensure_file
+from scripts.parser import BlastCols, BlastConfig, get_best_hits, read_blast_tsv
+from scripts.schema import BlastResult
+from scripts.utils import _ensure_dir, _ensure_file
 
 
 def get_blastdb(subject: Path, wd: Path) -> Path:
